@@ -20,4 +20,11 @@ describe('randNumber', () => {
     expect(typeof num).toBe('number');
     expect(String(num)).toMatch(/^\d\d00$/);
   });
+
+  it('should auto detect fraction', () => {
+    const num = randNumber({ min: 0.101, max: 1 });
+    expect(typeof num).toBe('number');
+    expect(Number.isInteger(num)).toBe(false);
+    expect(num.toString().split('.')[1]).toHaveLength(3);
+  });
 });
